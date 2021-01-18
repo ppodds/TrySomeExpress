@@ -41,6 +41,7 @@
         <% if (user) { %>
           <div class="mt-3">
           <form action='msg/post/?id=<%= article._id %>' method="POST">
+            <input name="_csrf" value="<%= csrfToken %>" type='hidden'>
             <div class="form-group">
             <input class="form-control" name=content required placeholder="留言內容" type='text'>
             <input type="submit" class="btn btn-primary" value="送出">
