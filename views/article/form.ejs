@@ -1,5 +1,9 @@
-<p class="mt-2" class="mx-auto">文章標題</p>
-<input name=title required value=<%= article.title %> type='text'>
-<p class="mt-2" >文章內容</p>
-<textarea rows=15 cols=50 name=content maxlength=30000><%= article.content %></textarea>
-<input type="submit" value="送出">
+<div class="form-group">
+    <label for="title" class="mx-auto">文章標題</label>
+    <input class="form-control" name=title required value=<%=article.title %> type='text'>
+</div>
+<div class="form-group">
+    <label for="content">文章內容</label>
+    <textarea class="form-control" rows=15 cols=50 name=content maxlength=30000><%= article.content %></textarea>
+</div>
+<input class="btn btn-primary" type="submit" value="送出">
