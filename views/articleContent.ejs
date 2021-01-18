@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= article.title %>
+  </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <%-include('partial/navbar')%>
+    <h1>
+      <%= article.title %>
+    </h1>
+    <div class="container border mx-auto w-75 h-25 shadow-sm">
+      <p class="m-3" id="content">
+        <%- article.content %>
+      </p>
+    </div>
+    <p>作者: <%= article.poster %>
+    </p>
+    <% if (user) { %>
+      <% if (user.username===article.poster) { %>
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary" onclick="location.href='/articles/modify?id=<%= article._id %>'">修改文章</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='/articles/delete?id=<%= article._id %>'">刪除文章</button>
+      </div>
+      <% } %>
+    <% } %>
+        <% if (user) { %>
+          <div class="mt-3">
+          <form action='msg/post/?id=<%= article._id %>' method="POST">
+            <div class="form-group">
+            <input class="form-control" name=content required placeholder="留言內容" type='text'>
+            <input type="submit" class="btn btn-primary" value="送出">
+            </div>
+          </form>
+          </div>
+          <% } %>
+            <h2>
+              文章留言
+            </h2>
+            <div class="container-sm p-3 mt-3">
+              <div class="list-group">
+                <% for (let i in messages){ %>
+                    <p class="list-group-item">
+                      <span class="pl-3"><%- messages[i].content %>-<%= messages[i].poster %></span>
+                      <% if (user) { %>
+                        <% if (user.username===messages[i].poster) { %>
+                            <button type="button" class="btn-sm btn-primary float-right" onclick="location.href='msg/modify?id=<%= messages[i]._id %>'">修改</button>
+                            <button type="button" class="btn-sm btn-primary float-right" onclick="location.href='msg/delete?id=<%= messages[i]._id %>'">刪除</button>
+                          <% } %>
+                        <% } %>
+                    </p>
+                <% } %>
+              </div>
+            </div>
+            
+</body>
+
+</html>

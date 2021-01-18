@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+  <ul class="navbar-nav pt-1 my-1 ">
+    <li class="nav-item">
+      <a class="nav-link" href="/">Homepage</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/articles">Articles</a>
+    </li>
+    <% if (user) { %>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+      <% } else {%>
+      <li class="nav-item">
+        <a class="nav-link" href="/signup">Sign up</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/signin">Sign in</a>
+      </li>
+      <% } %>
+  </ul>
+</nav>
+<br>
